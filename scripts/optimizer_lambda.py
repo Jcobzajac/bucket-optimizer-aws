@@ -48,7 +48,7 @@ def lambda_handler(event, context):
     table = os.environ.get('TABLE_NAME')
     query = f'''SELECT DISTINCT(key)
 FROM {table}
-WHERE requester != 'arn:aws:sts::006262944085:assumed-role/bucket-optimizing-lambda/bucket-optimizing-lambda' AND
+WHERE
 parse_datetime(RequestDateTime,'dd/MMM/yyyy:HH:mm:ss Z')
 BETWEEN parse_datetime('{last_possible_datetime}','yyyy-MM-dd:HH:mm:ss')
 AND
@@ -109,32 +109,4 @@ parse_datetime('{current_datetime}','yyyy-MM-dd:HH:mm:ss')'''
                             ]
                         }
                     )  
-      
-#----------------------------------------------------------------
-
-# import time
-# import boto3
-
-# query_test = "SELECT requestdatetime FROM s3_access_logs_db"
-# query    = "SELECT key,parse_datetime(requestdatetime, 'dd/MMM/yyyy:HH:mm:ss Z') FROM s3_access_logs_db WHERE key NOT LIKE '-' AND key NOT LIKE 'favicon.ico' AND parse_datetime(requestdatetime, 'dd/MMM/yyyy:HH:mm:ss Z') <= (CURRENT_DATE - INTERVAL '1' MONTH);"
-# database = 'optimization_db'
-# output   = 's3://bucket-optimize-logs/'
-# path     = 'athena/'
-
-# def lambda_handler(event, context):
-#     client = boto3.client('athena')
-
-#     # Execution
-#     response = client.start_query_execution(
-#         QueryString = query,
-#         QueryExecutionContext = {
-#             'Database': database
-#         },
-#         ResultConfiguration = {
-#             # first {} contains the output variable, then adds a '/' character for the directory and then the path variable
-#             'OutputLocation': "{}/{}".format(output, path),
-#         }
-#     )
-#     return response
-#     return
-
+     
