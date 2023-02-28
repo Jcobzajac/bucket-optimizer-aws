@@ -17,6 +17,8 @@ module "optimize" {
   log_bucket_name = var.log_bucket_name
   target_prefix = var.target_prefix
   athena_queries_destination = var.athena_queries_destination
+  key = var.key
+  value = var.value
 
 }
 
@@ -27,4 +29,6 @@ module "origin_resources" {
   target_prefix = var.target_prefix
   log_bucket_name = var.log_bucket_name
   log_bucket_acl = var.log_bucket_acl
+  key = var.key
+  value = var.value
 }
