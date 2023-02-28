@@ -43,6 +43,8 @@ module "lambda_function" {
       OUTPUT_QUERIES = var.athena_queries_destination
       DATABASE_NAME = var.athena_database_name
       TABLE_NAME = var.athena_table_name
+      KEY = var.key
+      VALUE = var.value
 
   }
   
