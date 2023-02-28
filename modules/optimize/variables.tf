@@ -85,4 +85,15 @@ variable "athena_queries_destination" {
     type        = string
 }
 
+variable "key" {
+    description = "Key for tagging"
+    type        = string
+}
+
+variable "value" {
+    description = "Value for tagging"
+    type        = string
+}
+
+
 
