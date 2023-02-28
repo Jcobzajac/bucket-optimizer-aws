@@ -101,3 +101,15 @@ variable "athena_queries_destination" {
     type        = string
     default     = "athena"
 }
+
+variable "key" {
+    description = "Key for tagging the object"
+    type        = string
+    default     = "demo"
+}
+
+variable "value" {
+    description = "Value for tagging the object"
+    type        = string
+    default     = "demo"
+}
