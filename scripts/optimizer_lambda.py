@@ -23,6 +23,8 @@ import time
 
 output_queries = os.environ.get('OUTPUT_QUERIES')
 log_bucket_name = os.environ.get('LOG_BUCKET_NAME')
+key = os.environ.get('KEY')
+value = os.environ.get('VALUE')
 athena = boto3.client('athena')
 s3 = boto3.client('s3')
 current_time_seconds = datetime.now(timezone.utc).timestamp()
@@ -48,7 +50,6 @@ def lambda_handler(event, context):
     table = os.environ.get('TABLE_NAME')
     query = f'''SELECT DISTINCT(key)
 FROM {table}
-WHERE
 parse_datetime(RequestDateTime,'dd/MMM/yyyy:HH:mm:ss Z')
 BETWEEN parse_datetime('{last_possible_datetime}','yyyy-MM-dd:HH:mm:ss')
 AND
@@ -96,6 +97,7 @@ parse_datetime('{current_datetime}','yyyy-MM-dd:HH:mm:ss')'''
         except ValueError:
             continue
 
+    #sys.exit(print(not_modified))
     for name in not_modified:
         s3.put_object_tagging(
                         Bucket=os.environ.get('BUCKET_NAME'),
@@ -103,10 +105,9 @@ parse_datetime('{current_datetime}','yyyy-MM-dd:HH:mm:ss')'''
                         Tagging={
                             'TagSet': [
                                 {
-                                    'Key': 'test',
-                                    'Value': 'passed'
+                                    'Key': key,
+                                    'Value': value
                                 },
                             ]
                         }
                     )  
-     
