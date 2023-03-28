@@ -1,5 +1,17 @@
 # Develeap Bucket Optimizer
 ## Intro
+
+ 
+Probably you had wanted to optimize costs of storage in the S3 Bucket by using AWS S3 Intelligent-Tiering, but you've encountered obstacle related to the size of your objects, that should be at least 128KB size. No worries, you are in the great place!
+
+This project was created as a solution for this type of the problem. Original proposal was a little bit different in terms of components of the flow, which can be found there:
+
+https://aws.amazon.com/blogs/architecture/expiring-amazon-s3-objects-based-on-last-accessed-date-to-decrease-costs/
+
+
+
+
+
 We wanted to use AWS S3 Intelligent-Tiering feature but there is a requirement for bucket objects to be at least 128KB size. We need bucket objects optimization (for costs needs) also for smaller size and therefore we decided to create this project.
 
 The architecture of this project follows the AWS article below, with the following architecture design: 
