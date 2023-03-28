@@ -1,24 +1,23 @@
 # Develeap Bucket Optimizer
 ## Intro
 
- 
-Probably you had wanted to optimize costs of storage in the S3 Bucket by using AWS S3 Intelligent-Tiering, but you've encountered obstacle related to the size of your objects, that should be at least 128KB size. No worries, you are in the great place!
+If you wanted to optimize the storage costs in your S3 bucket by using AWS S3 Intelligent-Tiering, but you encountered an obstacle related to the size of your objects, which need to be at least 128KB in size, don't worry, because you have come to the right place
+
+Bucket Optimizer was created with the idea of reducing cases related to the inability to optimize the storage costs of objects due to their inappropriate size. The mechanism involves moving an object from S3 Standard to S3 Standard-IA class if certain conditions are met. In our case, these conditions will include an arbitrary number of days during which the object should not be modified, and a second declarative number indicating the number of days for which the object has not been accessed.
+
+## Properties
+
+S3 Standard to S3 Standard-IA:
+* Were not accessed in the last 30 days (as a variable, might be changed)
+* Were not changed in the last 60 days (as a variable, might be changed)
 
 This project was created as a solution for this type of the problem. Original proposal was a little bit different in terms of components of the flow, which can be found there:
 
 https://aws.amazon.com/blogs/architecture/expiring-amazon-s3-objects-based-on-last-accessed-date-to-decrease-costs/
 
+The architecture of this project:
 
-
-
-
-We wanted to use AWS S3 Intelligent-Tiering feature but there is a requirement for bucket objects to be at least 128KB size. We need bucket objects optimization (for costs needs) also for smaller size and therefore we decided to create this project.
-
-The architecture of this project follows the AWS article below, with the following architecture design: 
-
-![alt text](https://d2908q01vomqb2.cloudfront.net/fc074d501302eb2b93e2554793fcaf50b3bf7291/2021/08/02/Fig1-S3-Object.png)
-
-https://aws.amazon.com/blogs/architecture/expiring-amazon-s3-objects-based-on-last-accessed-date-to-decrease-costs/
+![Bucket-Optimizer](./images/diagram.svg)
 
 ## Properties
 Our main goal is to move objects to cheaper storage classes (for the beginning Standard-IA) if they are:
