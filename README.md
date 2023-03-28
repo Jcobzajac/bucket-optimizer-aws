@@ -17,7 +17,7 @@ https://aws.amazon.com/blogs/architecture/expiring-amazon-s3-objects-based-on-la
 
 The architecture of this project:
 
-![Bucket-Optimizer](./images/diagram.svg)
+![Bucket-Optimizer](./images/new-diagram.svg) 
 
 ## Properties
 Our main goal is to move objects to cheaper storage classes (for the beginning Standard-IA) if they are:
