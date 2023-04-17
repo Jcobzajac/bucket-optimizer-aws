@@ -24,8 +24,8 @@ https://aws.amazon.com/blogs/architecture/expiring-amazon-s3-objects-based-on-la
 - **AWS Lambda** (A Lambda function executes a Python script to tag appropriate objects. Tagging objects triggers S3 Lifecycle Rules)
 - **Amazon EventBridge** (An Amazon EventBridge rule is configured to periodically invoke the Lambda function)
 
-## Structure of repository
-
+## Structure of the repository
+```
 ├── data.tf
 ├── images
 │   └── newdiagram.drawio.svg
@@ -47,7 +47,7 @@ https://aws.amazon.com/blogs/architecture/expiring-amazon-s3-objects-based-on-la
 ├── scripts
 │   └── optimizer_lambda.py
 └── variables.tf
-
+```
 Our repository is organized into logically divided modules, named **optimize** and **origin_resources**. In the **origin_resources** module, we provision Amazon S3 Server Access Logs with S3 Lifecycle Rules based on the Amazon S3 Source Bucket. In the **optimize** module, we create all the resources actively used in the optimization process, including Amazon CloudWatch Events, AWS Lambda, and Amazon Athena. The **scripts** folder contains the backbone of our implementation, which is a Python script.
 
 ## Prerequisites before running:
