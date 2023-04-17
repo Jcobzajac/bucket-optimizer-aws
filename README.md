@@ -24,10 +24,31 @@ https://aws.amazon.com/blogs/architecture/expiring-amazon-s3-objects-based-on-la
 - **AWS Lambda** (A Lambda function executes a Python script to tag appropriate objects. Tagging objects triggers S3 Lifecycle Rules)
 - **Amazon EventBridge** (An Amazon EventBridge rule is configured to periodically invoke the Lambda function)
 
-## Properties
-Our main goal is to move objects to cheaper storage classes (for the beginning Standard-IA) if they are:
-* Were not accessed in the last 30 days (as a variable, might be changed)
-* Were not changed in the last 60 days (as a variable, might be changed)
+## Structure of repository
+
+├── data.tf
+├── images
+│   └── newdiagram.drawio.svg
+├── main.tf
+├── modules
+│   ├── optimize
+│   │   ├── athena.tf
+│   │   ├── cloudwatch_event.tf
+│   │   ├── lambda.tf
+│   │   ├── local.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   └── origin_resources
+│       ├── lifecycle.tf
+│       ├── server_log_bucket.tf
+│       └── variables.tf
+├── providers.tf
+├── README.md
+├── scripts
+│   └── optimizer_lambda.py
+└── variables.tf
+
+Our repository is organized into logically divided modules, named **optimize** and **origin_resources**. In the **origin_resources** module, we provision Amazon S3 Server Access Logs with S3 Lifecycle Rules based on the Amazon S3 Source Bucket. In the **optimize** module, we create all the resources actively used in the optimization process, including Amazon CloudWatch Events, AWS Lambda, and Amazon Athena. The **scripts** folder contains the backbone of our implementation, which is a Python script.
 
 ## Prerequisites before running:
  1. S3 terraform statefile backend - we are storing the project's terraform state in an s3 bucket, as a best practice. We assume that the bucket name will be 'bucket-optimizer-tf-backend'. But you can modify it manually.
