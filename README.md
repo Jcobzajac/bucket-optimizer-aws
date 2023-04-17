@@ -24,7 +24,7 @@ https://aws.amazon.com/blogs/architecture/expiring-amazon-s3-objects-based-on-la
 - **AWS Lambda** (A Lambda function executes a Python script to tag appropriate objects. Tagging objects triggers S3 Lifecycle Rules)
 - **Amazon EventBridge** (An Amazon EventBridge rule is configured to periodically invoke the Lambda function)
 
-## Structure of the repository
+## Structure Of The Repository
 ```
 ├── data.tf
 ├── images
@@ -50,8 +50,20 @@ https://aws.amazon.com/blogs/architecture/expiring-amazon-s3-objects-based-on-la
 ```
 Our repository is organized into logically divided modules, named **optimize** and **origin_resources**. In the **origin_resources** module, we provision Amazon S3 Server Access Logs with S3 Lifecycle Rules based on the Amazon S3 Source Bucket. In the **optimize** module, we create all the resources actively used in the optimization process, including Amazon CloudWatch Events, AWS Lambda, and Amazon Athena. The **scripts** folder contains the backbone of our implementation, which is a Python script.
 
-## Prerequisites before running:
- 1. S3 terraform statefile backend - we are storing the project's terraform state in an s3 bucket, as a best practice. We assume that the bucket name will be 'bucket-optimizer-tf-backend'. But you can modify it manually.
- 2. Source bucket - the bucket we want to optimize. Without the source bucket this project isn't relevant.
- 3. Configure variables required variables
- 4. Allow S3 log delivery group on the source ACL - currently it's impossible doing so using terraform as only the bucket owner has the permission to enable s3 server access logs. Therefore, we need to configure it manually BEFORE running this terraform project. Please follow AWS documentation: https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html
+## Main Goal
+
+The main objective we want to accomplish is performing a transition from **S3 Standard** to **S3 Standard-IA**. The transition is executed when predetermined conditions are met. Our conditions are:
+
+- The object hasn't been accessed in the last 30 days.
+- The object hasn't been modified in the last 30 days.
+
+The number of days specified in each condition is arbitrary and can be changed in the **variables.tf** (input variables) file according to our preferences:
+
+- **modify_days** (The object hasn't been modified in the last X days)
+- **access_days** (The object hasn't been accessed in the last Y days)
+
+
+
+
+
+
