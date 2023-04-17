@@ -7,11 +7,11 @@ Bucket Optimizer was created with the idea of reducing cases related to the inab
 
 ## Architecture
 
-This project was created as a solution for this type of the problem. Original proposal was a little bit different in terms of components of the flow, which can be found there:
+This project was created as a solution for this type of problem. The original proposal was slightly different in terms of the components in the flow, which can be found here:
 
 https://aws.amazon.com/blogs/architecture/expiring-amazon-s3-objects-based-on-last-accessed-date-to-decrease-costs/
 
-**Current architecture represented via diagram below:**
+**The current architecture is represented in the diagram below:**
 
 ![Bucket-Optimizer](./images/newdiagram.drawio.svg)
 
