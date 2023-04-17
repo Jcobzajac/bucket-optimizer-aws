@@ -13,6 +13,7 @@ https://aws.amazon.com/blogs/architecture/expiring-amazon-s3-objects-based-on-la
 
 **The current architecture is represented in the diagram below:**
 
+
 ![Bucket-Optimizer](./images/newdiagram.drawio.svg)
 
 **The entire architecture consists of:**
