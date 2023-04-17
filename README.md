@@ -29,6 +29,7 @@ https://aws.amazon.com/blogs/architecture/expiring-amazon-s3-objects-based-on-la
 ├── data.tf
 ├── images
 │   └── newdiagram.drawio.svg
+├── LICENSE
 ├── main.tf
 ├── modules
 │   ├── optimize
