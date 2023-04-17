@@ -137,14 +137,14 @@ variable "cloudwatch_rule_description" {
 ```
 ```
 variable "cloudwatch_rule_schedule_expression" {
-    description = "Frequency of running your lambda function"
+    description = "Frequency of running the lambda function"
     type        = string
     default     = "rate(2 minutes)" 
 }
 ```
 ```
 variable "target_prefix" {
-    description = "A prefix for all log object keys"
+    description = "Prefix for all log object keys"
     type        = string
     default     = "log/"
 }
