@@ -11,11 +11,11 @@ This project was created as a solution for this type of the problem. Original pr
 
 https://aws.amazon.com/blogs/architecture/expiring-amazon-s3-objects-based-on-last-accessed-date-to-decrease-costs/
 
-Current architecture represented via diagram below:
+**Current architecture represented via diagram below:**
 
 ![Bucket-Optimizer](./images/newdiagram.drawio.svg)
 
-The entire architecture consists of:
+**The entire architecture consists of:**
 
 - **Amazon S3 Source Bucket** (Our target bucket where the changes will be introduced)
 - **Amazon S3 Server Access Logs** (A bucket for storing server access logs)
