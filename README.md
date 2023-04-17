@@ -185,6 +185,10 @@ variable "value" {
 }
 ```
 
+## Credits and legal ownership
+
+*The Bucket Optimizer AWS project is owned by **Develeap** ([MIT License](/LICENSE))*
+
 
 
 
